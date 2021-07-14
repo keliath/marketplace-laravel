@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
+use App\Http\Requests\AdsFormRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdvertisementController extends Controller
 {
@@ -14,7 +17,8 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        //
+        $ads = Advertisement::where('user_id', auth()->user()->id)->get();
+        return view('ads.index', compact('ads'));
     }
 
     /**
@@ -33,9 +37,23 @@ class AdvertisementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdsFormRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
+
+        $data = $request->all();
+        $featureImage = $request->file('feature_image')->store('public/ads');
+        $firstImage = $request->file('first_image')->store('public/ads');
+        $secondImage = $request->file('second_image')->store('public/ads');
+
+        $data['feature_image'] = $featureImage;
+        $data['firs_image'] = $firstImage;
+        $data['second_image'] = $secondImage;
+        $data['slug'] = Str::slug($request->name);
+        $data['user_id'] = auth()->user()->id;
+
+        Advertisement::create($data);
+        return "created";
     }
 
     /**

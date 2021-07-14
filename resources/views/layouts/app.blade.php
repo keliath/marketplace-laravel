@@ -65,7 +65,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                 document.getElementById('logout-form').submit();">
+                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
                                     </a>
 
@@ -114,7 +114,7 @@
 
                                                 <li>
                                                     <a class="dropdown-item" href="">
-                                                        {{$childitem->name}}
+                                                        {{ $childitem->name }}
                                                     </a>
                                                 </li>
 
@@ -181,6 +181,20 @@
                 left: 100%;
                 min-width: 250px;
                 display: none
+            }
+
+
+            .vertical-menu a {
+                background-color: #fff;
+                color: #000;
+                display: block;
+                padding: 12px;
+                text-decoration: none;
+            }
+
+            .vertical-menu a:hover {
+                background-color: red;
+                color: #fff;
             }
 
     </style>
