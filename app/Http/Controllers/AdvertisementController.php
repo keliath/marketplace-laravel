@@ -42,12 +42,14 @@ class AdvertisementController extends Controller
         // dd($request->all());
 
         $data = $request->all();
-        $featureImage = $request->file('feature_image')->store('public/ads');
-        $firstImage = $request->file('first_image')->store('public/ads');
-        $secondImage = $request->file('second_image')->store('public/ads');
+        $featureImage = $request->file('feature_image')->store('public/img/ads');
+        $firstImage = $request->file('first_image')->store('public/img/ads');
+        $secondImage = $request->file('second_image')->store('public/img/ads');
+
+        // dd($featureImage.'--'.$firstImage.'--'.$secondImage);
 
         $data['feature_image'] = $featureImage;
-        $data['firs_image'] = $firstImage;
+        $data['first_image'] = $firstImage;
         $data['second_image'] = $secondImage;
         $data['slug'] = Str::slug($request->name);
         $data['user_id'] = auth()->user()->id;
@@ -75,7 +77,8 @@ class AdvertisementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ad = Advertisement::find($id);
+        return view('ads.edit', compact('ad'));
     }
 
     /**

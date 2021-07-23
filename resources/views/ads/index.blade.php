@@ -27,7 +27,7 @@
                                 <th scope="row">{{ $key }}</th>
                                 <td><img src="{{ Storage::url($ad->feature_image) }}" width="130" alt=""></td>
                                 <td>{{ $ad->name }}</td>
-                                <td>USD {{ $ad->price }}</td>
+                                <td style="color:blue">USD {{ $ad->price }}</td>
                                 <td>
                                     @if ($ad->published == 1)
                                         <span class="badge badge-success">Published</span>
@@ -35,8 +35,8 @@
                                         <span class="badge badge-danger">Pending</span>
                                     @endif
                                 </td>
-                                <td><button class="btn btn-primary">Edit</button></td>
-                                <td><button class="btn btn-danger">View</button></td>
+                                <td><a href="{{route('ads.edit', [$ad->id])}}"><button class="btn btn-primary">Edit</button></a></td>
+                                <td><button class="btn btn-info">View</button></td>
                             </tr>
 
                         @empty

@@ -17,22 +17,22 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/','MenuController@menu');
+Route::get('/', 'MenuController@menu');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/auth', function(){
+Route::get('/auth', function () {
     return view('backend.admin.index');
 });
 
 
 //admin
-Route::group(['prefix'=>'auth'], function(){
-    Route::resource('/category','CategoryController');//dependiendo la ruta ejecutara un metodo ej: category/create ejecuta metodo create
-    Route::resource('/subcategory','SubcategoryController');
-    Route::resource('/childcategory','ChildcategoryController');
+Route::group(['prefix' => 'auth'], function () {
+    Route::resource('/category', 'CategoryController'); //dependiendo la ruta ejecutara un metodo ej: category/create ejecuta metodo create
+    Route::resource('/subcategory', 'SubcategoryController');
+    Route::resource('/childcategory', 'ChildcategoryController');
 });
 
 
@@ -40,5 +40,4 @@ Route::group(['prefix'=>'auth'], function(){
 Route::get('/ads/create', 'AdvertisementController@create')->middleware('auth');
 Route::post('/ads/stores', 'AdvertisementController@store')->middleware('auth')->name('ads.store');
 Route::get('/ads', 'AdvertisementController@index')->middleware('auth');
-
-
+Route::get('/ads/{id}/edit', 'AdvertisementController@edit')->name('ads.edit')->middleware('auth');

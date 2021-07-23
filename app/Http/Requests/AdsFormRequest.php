@@ -32,9 +32,10 @@ class AdsFormRequest extends FormRequest
             'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'price_status' => 'required',
             'category_id' => 'required',
+            'listing_location' => 'required',
             'product_condition' => 'required',
             'country_id' => 'required',
-            'phone_number' => 'numeric|size:10'
+            // 'phone_number' => 'numeric|size:10'
         ];
     }
 }
