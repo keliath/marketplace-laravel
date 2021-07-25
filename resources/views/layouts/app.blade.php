@@ -196,6 +196,10 @@
                 background-color: red;
                 color: #fff;
             }
+            .vertical-menu a.active{
+                background-color: red;
+                color: #fff;
+            }
 
     </style>
 </body>
