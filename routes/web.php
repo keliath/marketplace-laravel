@@ -39,5 +39,7 @@ Route::group(['prefix' => 'auth'], function () {
 //ads
 Route::get('/ads/create', 'AdvertisementController@create')->middleware('auth');
 Route::post('/ads/stores', 'AdvertisementController@store')->middleware('auth')->name('ads.store');
-Route::get('/ads', 'AdvertisementController@index')->middleware('auth');
+Route::get('/ads', 'AdvertisementController@index')->name('ads.index')->middleware('auth');
 Route::get('/ads/{id}/edit', 'AdvertisementController@edit')->name('ads.edit')->middleware('auth');
+Route::put('/ads/{id}/update', 'AdvertisementController@update')->name('ads.update')->middleware('auth');
+

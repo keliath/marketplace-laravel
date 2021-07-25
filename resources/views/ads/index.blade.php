@@ -8,10 +8,13 @@
             </div>
 
             <div class="col-md-9">
+                @include('backend.include.message')
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Image</th>
                             <th scope="col">Name</th>
                             <th scope="col">Price</th>
@@ -26,6 +29,8 @@
                             <tr>
                                 <th scope="row">{{ $key }}</th>
                                 <td><img src="{{ Storage::url($ad->feature_image) }}" width="130" alt=""></td>
+                                <td><img src="{{ Storage::url($ad->first_image) }}" width="130" alt=""></td>
+                                <td><img src="{{ Storage::url($ad->second_image) }}" width="130" alt=""></td>
                                 <td>{{ $ad->name }}</td>
                                 <td style="color:blue">USD {{ $ad->price }}</td>
                                 <td>
