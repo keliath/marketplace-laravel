@@ -8,7 +8,7 @@
     <div class="vertical-menu">
         <a href="#">Dashboard</a>
         <a href="#">Profile</a>
-        <a href="#">Create ads</a>
+        <a href="#" class="active">Create ads</a>
         <a href="#">Published ads</a>
         <a href="#">Pending ads</a>
         <a href="#" class="">Message</a>
