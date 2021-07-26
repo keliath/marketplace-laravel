@@ -45,4 +45,5 @@ Route::put('/ads/{id}/update', 'AdvertisementController@update')->name('ads.upda
 
 //profile
 Route::get('/profile', 'ProfileController@index')->name('profile.index')->middleware('auth');
+Route::put('/profile', 'ProfileController@updateProfile')->name('update.profile')->middleware('auth');
 
