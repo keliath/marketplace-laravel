@@ -65,7 +65,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                     document.getElementById('logout-form').submit();">
+                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
                                     </a>
 
@@ -83,7 +83,6 @@
         {{-- second Navbar --}}
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm navbar-hover">
 
-
             <a class="navbar-brand" href="#"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHover"
                 aria-controls="navbarDD" aria-expanded="false" aria-label="Navigation">
@@ -95,7 +94,7 @@
                     @foreach ($menus as $menu)
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href=""
+                            <a class="nav-link dropdown-toggle" href="{{ route('category.show', [$menu->slug]) }}"
                                 data-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true"
                                 aria-expanded="false">
                                 {{ $menu->name }}
@@ -106,14 +105,15 @@
                                 @foreach ($menu->subcategories as $subitem)
 
                                     <li>
-                                        <a class="dropdown-item dropdown-toggle" href="">{{ $subitem->name }}</a>
-
+                                        <a class="dropdown-item dropdown-toggle"
+                                            href="{{ route('subcategory.show', [$menu->slug, $subitem->slug]) }}">{{ $subitem->name }}</a>
                                         <ul class="dropdown-menu">
 
                                             @foreach ($subitem->childcategories as $childitem)
 
                                                 <li>
-                                                    <a class="dropdown-item" href="">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('childcategory.show', [$menu->slug, $subitem->slug, $childitem->slug]) }}">
                                                         {{ $childitem->name }}
                                                     </a>
                                                 </li>
@@ -196,7 +196,8 @@
                 background-color: red;
                 color: #fff;
             }
-            .vertical-menu a.active{
+
+            .vertical-menu a.active {
                 background-color: red;
                 color: #fff;
             }

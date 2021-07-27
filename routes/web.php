@@ -42,8 +42,14 @@ Route::post('/ads/stores', 'AdvertisementController@store')->middleware('auth')-
 Route::get('/ads', 'AdvertisementController@index')->name('ads.index')->middleware('auth');
 Route::get('/ads/{id}/edit', 'AdvertisementController@edit')->name('ads.edit')->middleware('auth');
 Route::put('/ads/{id}/update', 'AdvertisementController@update')->name('ads.update')->middleware('auth');
+Route::delete('/ads/{id}/delete', 'AdvertisementController@destroy')->name('ads.destroy')->middleware('auth');
 
 //profile
 Route::get('/profile', 'ProfileController@index')->name('profile.index')->middleware('auth');
 Route::put('/profile', 'ProfileController@updateProfile')->name('update.profile')->middleware('auth');
 
+//frontend 
+Route::get('/product/{categorySlug}', 'FrontController@findForCategory')->name('category.show');
+Route::get('/product/{categorySlug}/{subcategorySlug}', 'FrontController@findForSubcategory')->name('subcategory.show');
+Route::get('/product/{categorySlug}/{subcategorySlug}/{childcategorySlug}', 'FrontController@findForChildcategory')->name('childcategory.show');
+Route::get('/product/{id}/{slug}', 'FrontController@productDetail')->name('product.view');
