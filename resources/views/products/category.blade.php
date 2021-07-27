@@ -40,11 +40,13 @@
                 <div class="row">
                     @forelse ($advertisements as $ad)
                         <div class="col-3">
-                            <img src="{{ Storage::url($ad->feature_image) }}" class="img-thumbnail"
-                                alt="{{ $ad->name }}">
-                            <p class="text-center  card-footer" style="color: blue;">
-                                {{ $ad->name }}/USD {{ $ad->price }}
-                            </p>
+                            <a href="{{ route('product.view', [$ad->id, $ad->slug]) }}">
+                                <img src="{{ Storage::url($ad->feature_image) }}" class="img-thumbnail"
+                                    alt="{{ $ad->name }}">
+                                <p class="text-center  card-footer" style="color: blue;">
+                                    {{ $ad->name }}/USD {{ $ad->price }}
+                                </p>
+                            </a>
                         </div>
                     @empty
                         sorry, we are unable to find products based on this category

@@ -62,4 +62,9 @@ class FrontController extends Controller
         $filter = $subcategorySlug->ads->unique('childcategory_id'); // unique para compactar y no se repitan en base al atributo dado
         return view('products.childcategory', compact('advertisements', 'filter'));
     }
+    public function productDetail($id, $slug)
+    {
+        $advertisement = Advertisement::where('id', $id)->where('slug', $slug)->first();
+        return view('products.details', compact('advertisement'));
+    }
 }

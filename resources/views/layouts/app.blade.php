@@ -12,6 +12,14 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- https://www.tiny.cloud/docs/ --}}
+    <script src="https://cdn.tiny.cloud/1/ent13rfwm2airh4xbo8o0bot0feor7h2wn7sq4tro00s1caj/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,6 +27,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <x-embed-styles />
 </head>
 
 <body>
@@ -65,7 +74,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
                                     </a>
 
@@ -169,7 +178,7 @@
 
             .navbar-hover .collapse ul ul {
                 position: absolute;
-                top: 100%;
+                top: 98%;
                 left: 0;
                 min-width: 250px;
                 display: none

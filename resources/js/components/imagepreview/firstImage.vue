@@ -6,7 +6,7 @@
       id="first_image"
       @change="onFileChange"
       class="custom-file-upload"
-      required
+      
     />
     <div id="preview">
       <img v-if="url" :src="url" alt="" width="100" accept="image/*" />

@@ -52,4 +52,4 @@ Route::put('/profile', 'ProfileController@updateProfile')->name('update.profile'
 Route::get('/product/{categorySlug}', 'FrontController@findForCategory')->name('category.show');
 Route::get('/product/{categorySlug}/{subcategorySlug}', 'FrontController@findForSubcategory')->name('subcategory.show');
 Route::get('/product/{categorySlug}/{subcategorySlug}/{childcategorySlug}', 'FrontController@findForChildcategory')->name('childcategory.show');
-Route::get('/product/{id}/{slug}', 'FrontController@productDetail')->name('product.view');
+Route::get('/products/{id}/{slug}', 'FrontController@productDetail')->name('product.view');
