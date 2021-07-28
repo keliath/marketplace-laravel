@@ -23,13 +23,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/auth', function () {
-    return view('backend.admin.index');
-});
-
-
-//admin
-Route::group(['prefix' => 'auth'], function () {
+Route::group(['prefix' => 'auth', 'middleware' => 'admin'], function () {
+    //admin
+    Route::get('/', function () {
+        return view('backend.admin.index');
+    })->name('auth');
     Route::resource('/category', 'CategoryController'); //dependiendo la ruta ejecutara un metodo ej: category/create ejecuta metodo create
     Route::resource('/subcategory', 'SubcategoryController');
     Route::resource('/childcategory', 'ChildcategoryController');
