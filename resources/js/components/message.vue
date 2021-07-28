@@ -24,7 +24,6 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
                             Send Message to the seller {{ sellerName }}
-                            {{adId}}
                         </h5>
                         <button
                             type="button"
@@ -37,6 +36,7 @@
                     </div>
                     <div class="modal-body">
                         <textarea
+                            v-model="body"
                             name=""
                             class="form-control"
                             placeholder="Please write your message..."
@@ -44,6 +44,7 @@
                             cols="30"
                             rows="10"
                         ></textarea>
+                        <p v-if="successMessage" style="color:green">Your message has been send</p>
                     </div>
                     <div class="modal-footer">
                         <button
@@ -53,7 +54,11 @@
                         >
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            @click.prevent="sendMessage()"
+                        >
                             Send Message
                         </button>
                     </div>
@@ -65,6 +70,26 @@
 
 <script>
 export default {
-    props: ["sellerName", "userId", "receiverId", "adId"]
+    props: ["sellerName", "userId", "receiverId", "adId"],
+    data() {
+        return {
+            body: "",
+            successMessage: false
+        };
+    },
+    methods: {
+        sendMessage() {
+            axios
+                .post("/send/message", {
+                    body: this.body,
+                    receiverId: this.receiverId,
+                    userId: this.userId,
+                    adId: this.adId
+                })
+                .then(response => {
+                    (this.body = ""), (this.successMessage = true);
+                });
+        }
+    }
 };
 </script>

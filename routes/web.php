@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SendMessagesController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Requests\CategoryFormRequest;
@@ -52,3 +53,5 @@ Route::get('/product/{categorySlug}/{subcategorySlug}', 'FrontController@findFor
 Route::get('/product/{categorySlug}/{subcategorySlug}/{childcategorySlug}', 'FrontController@findForChildcategory')->name('childcategory.show');
 Route::get('/products/{id}/{slug}', 'FrontController@productDetail')->name('product.view');
 
+//message
+Route::post('/send/message', 'SendMessagesController@Store');
