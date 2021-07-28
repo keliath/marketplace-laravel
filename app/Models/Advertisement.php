@@ -41,4 +41,15 @@ class Advertisement extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    ///scope
+    public function scopeFirstCarouselPreview($query, $categoryId)
+    {
+        return $query->where('category_id', $categoryId)->orderBy('id', 'desc')->take(4)->get();
+    }
+    public function scopeSecondCarouselPreview($query, $categoryId)
+    {
+        $firstAds = $this->scopeFirstCarouselPreview($query, $categoryId);
+        return $query->where('category_id', $categoryId)->whereNotIn('id', $firstAds->pluck('id')->toArray())->take(4)->get();
+    }
 }

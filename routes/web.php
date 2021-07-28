@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', 'MenuController@menu');
+Route::get('/', 'FrontendAdsController@index');
 
 Auth::routes();
 

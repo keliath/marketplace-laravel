@@ -26,4 +26,10 @@ class Category extends Model
     {
         return $this->hasMany(Advertisement::class);
     }
+
+    //scope
+    public function scopeCategoryCar($query)
+    {
+        return $query->where('name', 'carss')->first();
+    }
 }
