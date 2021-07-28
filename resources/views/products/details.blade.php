@@ -37,7 +37,7 @@
                 <hr>
                 <div class="card">
                     <div class="card-body">
-                        <p>{{ $advertisement->description }}</p>
+                        <p>{!! $advertisement->description !!}</p>
                     </div>
                 </div>
                 <div class="card">
@@ -72,7 +72,11 @@
                 @else
                     <img src="/img/default.png" alt="" width="120">
                 @endif
-                <p>{!! $advertisement->user->name !!}</p>
+                <p>{{ $advertisement->user->name }}</p>
+                @if (Auth()->check())
+                    <message seller-name="{{ $advertisement->user->name }}" user-id="{{ auth()->user()->id }}"
+                        receiver-id="{{ $advertisement->user->id }}" ad-id="{{ $advertisement->id }}"/>
+                @endif
             </div>
 
 

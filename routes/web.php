@@ -51,3 +51,4 @@ Route::get('/product/{categorySlug}', 'FrontController@findForCategory')->name('
 Route::get('/product/{categorySlug}/{subcategorySlug}', 'FrontController@findForSubcategory')->name('subcategory.show');
 Route::get('/product/{categorySlug}/{subcategorySlug}/{childcategorySlug}', 'FrontController@findForChildcategory')->name('childcategory.show');
 Route::get('/products/{id}/{slug}', 'FrontController@productDetail')->name('product.view');
+

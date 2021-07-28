@@ -2,8 +2,8 @@
     <div>
         <input
             type="file"
-            name="feature_images"
-            id="feature_images"
+            name="feature_image"
+            id="feature_image"
             @change="onFileChange"
             class="custom-file-upload"
         />
