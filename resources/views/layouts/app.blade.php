@@ -78,6 +78,9 @@
                                             {{ __('Dashboard') }}
                                         </a>
                                     @else
+                                        <a class="dropdown-item" href="/messages">
+                                            {{ __('Messages') }}
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('ads.index') }}">
                                             {{ __('Ads') }}
                                         </a>

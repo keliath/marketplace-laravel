@@ -12,10 +12,29 @@
         <div class="card-header text-center">
           <span>Chat </span>
         </div>
-        <div class="card-body chat-msg" v-chat-scroll>
+        <div
+          class="card-body chat-msg"
+          v-chat-scroll="{ smooth: true, notSmoothOnInit: true }"
+        >
           <ul class="chat" v-for="(message, index) in messages" :key="index">
             <li class="sender clearfix" v-if="message.selfOwned">
-              <span class="chat-img left clearfix mx-2"> img </span>
+              <span
+                class="chat-img left clearfix mx-2"
+                v-if="message.user.avatar"
+              >
+                <img
+                  :src="'/storage/' + message.user.avatar.substring(7)"
+                  :alt="'user image: ' + message.user.name"
+                  width="50"
+                />
+              </span>
+              <span class="chat-img left clearfix mx-2" v-else>
+                <img
+                  src="/img/default.png"
+                  alt="user image default"
+                  width="50"
+                />
+              </span>
               <div class="chat-body2 clearfix">
                 <div class="header clearfix">
                   <strong class="primary-font">
@@ -23,8 +42,9 @@
                   </strong>
                   <small class="right text-muted">
                     <span class="glyphicon glyphicon-time"></span>
-
-                    date
+                    {{
+                      dayjs(message.created_at).format("DD-MM-YYYY").toString()
+                    }}
                   </small>
                 </div>
                 <p class="text-center" v-if="message.ads">
@@ -51,12 +71,31 @@
               </div>
             </li>
             <li class="buyer clearfix" v-else>
-              <span class="chat-img right clearfix mx-2"> img </span>
+              <span
+                class="chat-img right clearfix mx-2"
+                v-if="message.user.avatar"
+              >
+                <img
+                  :src="'/storage/' + message.user.avatar.substring(7)"
+                  :alt="'user image: ' + message.user.name"
+                  width="50"
+                />
+              </span>
+              <span class="chat-img right clearfix mx-2" v-else>
+                <img
+                  src="/img/default.png"
+                  alt="user image default"
+                  width="50"
+                />
+              </span>
               <div class="chat-body clearfix">
                 <div class="header clearfix">
-                  <small class="left text-muted"
-                    ><span class="glyphicon glyphicon-time"></span>date</small
-                  >
+                  <small class="left text-muted">
+                    <span class="glyphicon glyphicon-time"></span>
+                    {{
+                      dayjs(message.created_at).format("DD-MM-YYYY").toString()
+                    }}
+                  </small>
                   <strong class="right primary-font">
                     {{ message.user.name }}
                   </strong>
@@ -94,6 +133,8 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
+
 export default {
   data() {
     return {
@@ -101,12 +142,16 @@ export default {
       messages: [],
       selectedUserId: "",
       body: "",
+      dayjs: dayjs,
     };
   },
   mounted() {
     axios.get("/users").then((response) => {
       this.users = response.data;
     });
+    // setInterval(() => {
+    //   this.showMessage(this.selectedUserId);
+    // }, 1000);
   },
   methods: {
     showMessage(userId) {
@@ -115,7 +160,7 @@ export default {
         this.selectedUserId = userId;
       });
     },
-    sendMessage(e) {
+    sendMessage() {
       axios
         .post("/start-conversation", {
           body: this.body,

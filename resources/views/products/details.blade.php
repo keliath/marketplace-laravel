@@ -74,8 +74,10 @@
                 @endif
                 <p>{{ $advertisement->user->name }}</p>
                 @if (Auth()->check())
-                    <message seller-name="{{ $advertisement->user->name }}" user-id="{{ auth()->user()->id }}"
-                        receiver-id="{{ $advertisement->user->id }}" ad-id="{{ $advertisement->id }}"/>
+                    @if (Auth()->user()->id != $advertisement->user_id)
+                        <message seller-name="{{ $advertisement->user->name }}" user-id="{{ auth()->user()->id }}"
+                            receiver-id="{{ $advertisement->user->id }}" ad-id="{{ $advertisement->id }}" />
+                    @endif
                 @endif
             </div>
 
