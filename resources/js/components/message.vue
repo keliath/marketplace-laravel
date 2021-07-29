@@ -79,6 +79,10 @@ export default {
     },
     methods: {
         sendMessage() {
+            if (this.body == '') {
+                alert('please write your message');
+               return; 
+            }
             axios
                 .post("/send/message", {
                     body: this.body,
