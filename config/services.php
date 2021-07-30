@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+
 return [
 
     /*
@@ -29,5 +31,11 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+    'facebook' => [
+        'client_id' => env('APP_FB_LOGIN_ID'),
+        'client_secret' => env('APP_FB_LOGIN_KEY'),
+        'redirect' => env('APP_FB_LOGIN_REDIRECT'),
+    ]
 
 ];

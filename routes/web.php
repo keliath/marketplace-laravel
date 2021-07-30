@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SendMessagesController;
+use App\Http\Controllers\SocialLoginController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Requests\CategoryFormRequest;
@@ -35,7 +36,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'admin'], function () {
 });
 
 //user ads
-Route::get('/ads/{userId}/view','FrontController@viewUserAds')->name('show.user.ads');
+Route::get('/ads/{userId}/view', 'FrontController@viewUserAds')->name('show.user.ads');
 
 //ads
 Route::get('/ads/create', 'AdvertisementController@create')->name('ads.create')->middleware('auth');
@@ -61,3 +62,7 @@ Route::get('messages', 'SendMessagesController@index')->middleware('auth');
 Route::get('/users', 'SendMessagesController@chatWithThisUser')->middleware('auth');
 Route::get('/message/user/{id}', 'SendMessagesController@showMessages')->middleware('auth');
 Route::post('/start-conversation', 'SendMessagesController@startConversation')->middleware('auth');
+
+//login with facebook
+Route::get('auth/facebook', 'SocialLoginController@facebookRedirect');
+Route::get('auth/facebook/callback', 'SocialLoginController@loginWithFacebook');
