@@ -2,6 +2,16 @@
   <div class="row">
     <div class="col-md-2">
       <p v-for="(user, index) in users" :key="index">
+        <span v-if="user.avatar">
+          <img
+            :src="'/storage/' + user.avatar.substring(7)"
+            alt=""
+            class="img-fluid"
+          />
+        </span>
+        <span v-else>
+          <img src="/img/default.png" alt="" class="img-fluid" />
+        </span>
         <a href="#" @click.prevent="showMessage(user.id)">
           {{ user.name }}
         </a>
@@ -13,6 +23,7 @@
           <span>Chat </span>
         </div>
         <div
+          v-if="selectedUserId"
           class="card-body chat-msg"
           v-chat-scroll="{ smooth: true, notSmoothOnInit: true }"
         >
@@ -109,7 +120,13 @@
               <span class="chat-img left clearfix mx-2"> </span>
             </li>
           </ul>
+          <!-- card chat  -->
         </div>
+        <div v-else style="min-height: 250px">
+          <p class="text-center">Please select the user to chat</p>
+          <!-- else card chat  -->
+        </div>
+
         <div class="card-footer">
           <div class="input-group">
             <input
@@ -149,9 +166,11 @@ export default {
     axios.get("/users").then((response) => {
       this.users = response.data;
     });
-    // setInterval(() => {
-    //   this.showMessage(this.selectedUserId);
-    // }, 1000);
+    setInterval(() => {
+      if (this.selectedUserId !== "") {
+        this.showMessage(this.selectedUserId);
+      }
+    }, 1000);
   },
   methods: {
     showMessage(userId) {
@@ -161,6 +180,10 @@ export default {
       });
     },
     sendMessage() {
+      if (this.body === "" || this.selectedUserId === "") {
+        this.body = "";
+        return;
+      }
       axios
         .post("/start-conversation", {
           body: this.body,

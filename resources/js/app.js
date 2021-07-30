@@ -40,6 +40,8 @@ Vue.component("message", require("./components/message.vue").default);
 
 Vue.component("conversation", require("./components/conversation.vue").default);
 
+Vue.component("show-number", require("./components/showPhoneNumber.vue").default);
+
 const app = new Vue({
     el: "#app"
 });

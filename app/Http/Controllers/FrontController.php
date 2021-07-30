@@ -7,9 +7,11 @@ use App\Models\Childcategory;
 use App\Models\Subcategory;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class FrontController extends Controller
 {
+    //filter for category
     public function findForCategory(Request $request, Category $categorySlug)
     {
         $priceFilter = Advertisement::where('category_id', $categorySlug->id)->when($request->minPrice, function ($query, $minPrice) {
@@ -24,9 +26,11 @@ class FrontController extends Controller
 
         // $filter = $categorySlug->ads->unique('subcategory_id');
         $filter = Subcategory::where('category_id', $categorySlug->id)->get(); //alternativa para obtener las sub categorias 
-        
+
         return view('products.category', compact('advertisements', 'filter'));
     }
+
+    //filter for subcategory
     public function findForSubcategory(Request $request, $categorySlug, Subcategory $subcategorySlug)
     {
         // $sub = Subcategory::where('slug', $subcategorySlug)->first();
@@ -47,6 +51,8 @@ class FrontController extends Controller
         $filter = $subcategorySlug->ads->unique('childcategory_id');
         return view('products.subcategory', compact('advertisements', 'filter'));
     }
+
+    //filter for childcategory
     public function findForChildcategory(Request $request, $categorySlug, Subcategory $subcategorySlug, Childcategory $childcategorySlug)
     {
         $priceFilter = Advertisement::where('childcategory_id', $childcategorySlug->id)->when($request->minPrice, function ($query, $minPrice) {
@@ -62,9 +68,19 @@ class FrontController extends Controller
         $filter = $subcategorySlug->ads->unique('childcategory_id'); // unique para compactar y no se repitan en base al atributo dado
         return view('products.childcategory', compact('advertisements', 'filter'));
     }
+
+    //show individual ads
     public function productDetail($id, $slug)
     {
         $advertisement = Advertisement::where('id', $id)->where('slug', $slug)->first();
         return view('products.details', compact('advertisement'));
+    }
+
+    //show user ads
+    public function viewUserAds($id)
+    {
+        $advertisements = Advertisement::where('user_id', $id)->paginate(21);
+        $user = User::find($id);
+        return view('products.sellerAds', compact('advertisements', 'user'));
     }
 }

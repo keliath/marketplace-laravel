@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //booptstrap paginator
+        Paginator::useBootstrap();
+
         //exportar el submenu de categorias a todas las paginas
         View::composer(['*'], function ($view) {
             $menus = \App\Models\Category::with('subcategories')->get();

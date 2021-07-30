@@ -34,6 +34,8 @@ Route::group(['prefix' => 'auth', 'middleware' => 'admin'], function () {
     Route::resource('/childcategory', 'ChildcategoryController');
 });
 
+//user ads
+Route::get('/ads/{userId}/view','FrontController@viewUserAds')->name('show.user.ads');
 
 //ads
 Route::get('/ads/create', 'AdvertisementController@create')->name('ads.create')->middleware('auth');
