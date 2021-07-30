@@ -6,6 +6,7 @@
         v-if="displayBtn"
         @click.prevent="showNumber()"
       >
+        <i class="fas fa-phone"></i>
         Show Number
       </button>
     </p>

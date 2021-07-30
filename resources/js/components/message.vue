@@ -7,15 +7,14 @@
         data-toggle="modal"
         data-target="#staticBackdrop"
       >
+        <i class="fas fa-envelope"></i>
         Send message
       </button>
     </p>
     <p v-else>
       <a href="/messages">
-        <button
-          type="button"
-          class="btn btn-success"
-        >
+        <button type="button" class="btn btn-success">
+          <i class="fas fa-paper-plane"></i>
           View Conversation
         </button>
       </a>
