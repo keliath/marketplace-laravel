@@ -58,7 +58,7 @@ Route::get('/products/{id}/{slug}', 'FrontController@productDetail')->name('prod
 
 //message
 Route::post('/send/message', 'SendMessagesController@Store')->middleware('auth');
-Route::get('messages', 'SendMessagesController@index')->middleware('auth');
+Route::get('messages', 'SendMessagesController@index')->name('messages')->middleware('auth');
 Route::get('/users', 'SendMessagesController@chatWithThisUser')->middleware('auth');
 Route::get('/message/user/{id}', 'SendMessagesController@showMessages')->middleware('auth');
 Route::post('/start-conversation', 'SendMessagesController@startConversation')->middleware('auth');
@@ -66,3 +66,8 @@ Route::post('/start-conversation', 'SendMessagesController@startConversation')->
 //login with facebook
 Route::get('auth/facebook', 'SocialLoginController@facebookRedirect');
 Route::get('auth/facebook/callback', 'SocialLoginController@loginWithFacebook');
+
+//save ad
+Route::post('/ad/save', 'SaveAdController@saveAd')->middleware('auth');
+Route::get('/saved/ads', 'SaveAdController@getAdsFav')->name('saved.ad')->middleware('auth');
+

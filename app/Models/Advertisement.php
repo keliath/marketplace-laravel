@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class Advertisement extends Model
 {
@@ -41,6 +42,18 @@ class Advertisement extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    //save ads favorite
+    public function userAds()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    //check same user post
+    // public function didUserSavedAd()
+    // {
+    //     return DB::table('advertisements')->where('user_id', auth()->user()->id)->where('id',$this->id)->first();
+    // } //user id its already in advertisement table
 
     ///scope
     public function scopeFirstCarouselPreview($query, $categoryId)

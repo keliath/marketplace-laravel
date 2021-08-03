@@ -42,6 +42,8 @@ Vue.component("conversation", require("./components/conversation.vue").default);
 
 Vue.component("show-number", require("./components/showPhoneNumber.vue").default);
 
+Vue.component("save-ad", require("./components/saveAd.vue").default);
+
 const app = new Vue({
     el: "#app"
 });
