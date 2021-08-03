@@ -136,7 +136,7 @@ class AdvertisementController extends Controller
 
     public function pendingAds()
     {
-        $ads = Advertisement::where('published', 0)->get();
+        $ads = Advertisement::where("user_id", auth()->user()->id)->where('published', 0)->get();
         return view('ads.pending', compact('ads'));
     }
 }
