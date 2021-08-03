@@ -70,5 +70,6 @@ Route::get('auth/facebook/callback', 'SocialLoginController@loginWithFacebook');
 
 //save ad
 Route::post('/ad/save', 'SaveAdController@saveAd')->middleware('auth');
+Route::post('/ad/remove', 'SaveAdController@removeAd')->name('remove.ad')->middleware('auth');
 Route::get('/saved-ads', 'SaveAdController@getAdsFav')->name('saved.ad')->middleware('auth');
 

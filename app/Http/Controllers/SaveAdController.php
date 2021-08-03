@@ -18,8 +18,14 @@ class SaveAdController extends Controller
     public function getAdsFav()
     {
         $advertisementsId = DB::table('advertisement_user')
-        ->where('user_id', auth()->user()->id)->pluck('advertisement_id');
+            ->where('user_id', auth()->user()->id)->pluck('advertisement_id');
         $ads = Advertisement::whereIn('id', $advertisementsId)->get();
         return view('products.saved-ads', compact('ads'));
+    }
+    public function removeAd(Request $request)
+    {
+        DB::table('advertisement_user')->where('user_id', auth()->user()->id)
+        ->where('advertisement_id', $request->adId)->delete();
+        return back()->with('message','Ad removed from saved list successfull'); 
     }
 }

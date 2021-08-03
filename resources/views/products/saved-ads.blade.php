@@ -25,6 +25,13 @@
                                     <a href="{{ route('product.view', [$ad->id, $ad->slug]) }}"
                                         target="_blank">{{ $ad->name }}</a>
                                 </td>
+
+                                <td>
+                                    <form action="{{ route('remove.ad') }}" method="post">@csrf
+                                        <input type="hidden" name="adId" value="{{ $ad->id }}" id="">
+                                        <button type="submit" class="btn btn-danger">Remove</button>
+                                    </form>
+                                </td>
                             </tr>
 
                         @empty
