@@ -45,6 +45,7 @@ Route::get('/ads', 'AdvertisementController@index')->name('ads.index')->middlewa
 Route::get('/ads/{id}/edit', 'AdvertisementController@edit')->name('ads.edit')->middleware('auth');
 Route::put('/ads/{id}/update', 'AdvertisementController@update')->name('ads.update')->middleware('auth');
 Route::delete('/ads/{id}/delete', 'AdvertisementController@destroy')->name('ads.destroy')->middleware('auth');
+Route::get('/ad-pending', 'AdvertisementController@pendingAds')->name('pending.ad')->middleware('auth');
 
 //profile
 Route::get('/profile', 'ProfileController@index')->name('profile.index')->middleware('auth');
@@ -69,5 +70,5 @@ Route::get('auth/facebook/callback', 'SocialLoginController@loginWithFacebook');
 
 //save ad
 Route::post('/ad/save', 'SaveAdController@saveAd')->middleware('auth');
-Route::get('/saved/ads', 'SaveAdController@getAdsFav')->name('saved.ad')->middleware('auth');
+Route::get('/saved-ads', 'SaveAdController@getAdsFav')->name('saved.ad')->middleware('auth');
 

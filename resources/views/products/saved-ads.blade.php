@@ -20,7 +20,7 @@
                         @forelse ($ads as $key=>$ad)
 
                             <tr>
-                                <th scope="row">{{ $key }}</th>
+                                <th scope="row">{{ $key + 1 }}</th>
                                 <td>
                                     <a href="{{ route('product.view', [$ad->id, $ad->slug]) }}"
                                         target="_blank">{{ $ad->name }}</a>

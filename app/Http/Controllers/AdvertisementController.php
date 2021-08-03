@@ -133,4 +133,10 @@ class AdvertisementController extends Controller
         $ad->delete();
         return back()->with('message', 'Ad deleted successfully');
     }
+
+    public function pendingAds()
+    {
+        $ads = Advertisement::where('published', 0)->get();
+        return view('ads.pending', compact('ads'));
+    }
 }
