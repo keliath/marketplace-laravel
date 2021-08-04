@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminListingController;
 use App\Http\Controllers\SendMessagesController;
 use App\Http\Controllers\SocialLoginController;
 use Illuminate\Support\Facades\Route;
@@ -25,14 +26,17 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//admin 
 Route::group(['prefix' => 'auth', 'middleware' => 'admin'], function () {
-    //admin
     Route::get('/', function () {
         return view('backend.admin.index');
     })->name('auth');
     Route::resource('/category', 'CategoryController'); //dependiendo la ruta ejecutara un metodo ej: category/create ejecuta metodo create
     Route::resource('/subcategory', 'SubcategoryController');
     Route::resource('/childcategory', 'ChildcategoryController');
+
+    //admin listing
+    Route::get('/allads', 'AdminListingController@index')->name('all.ads');
 });
 
 //user ads

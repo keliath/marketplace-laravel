@@ -24,7 +24,7 @@
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic1">
             <i class="mdi mdi-circle-outline menu-icon"></i>
-            <span class="menu-title">SUbCategory</span>
+            <span class="menu-title">SubCategory</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="ui-basic1">
@@ -48,11 +48,12 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="pages/forms/basic_elements.html">
-            <i class="mdi mdi-view-headline menu-icon"></i>
-            <span class="menu-title">Form elements</span>
+          <a class="nav-link" href="{{ route('all.ads') }}">
+              <i class="mdi mdi-account-multiple menu-icon
+              "></i> 
+              <span class="menu-title"> All advertisements</span>
           </a>
-        </li>
+      </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/charts/chartjs.html">
             <i class="mdi mdi-chart-pie menu-icon"></i>
