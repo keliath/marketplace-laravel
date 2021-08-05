@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 @section('content')
     @include('backend.include.message')
-    <h4>Manage Advertisements</h4>
+    <h4>Reported Advertisements</h4>
     <div class="row justify-content-center">
 
 
@@ -14,49 +14,50 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Seller</th>
-                                    <th>Image</th>
-                                    <th>Name</th>
+                                    <th>Name of ad</th>
+                                    <th>Email </th>
+                                    <th>Reason</th>
 
+                                    <th>Message</th>
                                     <th>View</th>
 
                                     <th>Delete</th>
-                                    <th>Published date</th>
+
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @forelse($ads as $ad)
                                     <tr>
+                                        <td>{{ $ad->fraudad->name }}</td>
+
                                         <td>
-                                            @if ($ad->user->avatar)
-                                                <img src="{{ Storage::url($ad->user->avatar) }}" width="120">
-                                            @else
-                                                <img src="/img/default.png" width="120">
-                                            @endif
-                                            <a target="_blank"
-                                                href="{{ route('show.user.ads', $ad->user->id) }}">{{ $ad->user->name }}</a>
+                                            {{ $ad->email }}
                                         </td>
 
-                                        <td><img src="{{ Storage::url($ad->feature_image) }}"></td>
-                                        <td>{{ $ad->name }}</td>
+                                        <td>{{ $ad->reason }}</td>
+                                        <td>{{ $ad->message }}</td>
 
                                         <td>
-                                            <a target="_blank" href="{{ route('product.view', [$ad->id, $ad->slug]) }}">
-                                                <button class="btn btn-primary">View</button>
+                                            <a target="_blank"
+                                                href="{{ route('product.view', [$ad->ad_id, $ad->fraudad->slug]) }}">
+                                                <button class="btn btn-primary">
+                                                    View
+                                                </button>
                                             </a>
                                         </td>
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#exampleModal{{ $ad->id }}">
+                                                data-target="#exampleModal{{ $ad->ad_id }}">
                                                 <i class="mdi mdi-delete"></i>
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal{{ $ad->id }}" tabindex="-1"
+                                            <div class="modal fade" id="exampleModal{{ $ad->ad_id }}" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
-                                                    <form action="{{ route('ads.destroy', $ad->id) }}" method="post">
+                                                    <form action="{{ route('ads.destroy', $ad->ad_id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <div class="modal-content">
@@ -83,21 +84,24 @@
                                                 </div>
                                             </div>
 
+
+
                                         </td>
                                         <td>
                                             {{ $ad->created_at->format('Y-m-d') }}
                                         </td>
 
+
                                     </tr>
                                 @empty
-                                    <td>No ads to display</td>
+                                    <td>No any reported ads to display</td>
                                 @endforelse
-
 
 
                             </tbody>
                         </table>
                     </div>
+
                 </div>
                 {{ $ads->links() }}
             </div>

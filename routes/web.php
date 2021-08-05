@@ -37,6 +37,9 @@ Route::group(['prefix' => 'auth', 'middleware' => 'admin'], function () {
 
     //admin listing
     Route::get('/allads', 'AdminListingController@index')->name('all.ads');
+
+    //listing reported ads
+    Route::get('/reported-ads', 'FraudController@index')->name('all.reported.ads');
 });
 
 //user ads
@@ -77,3 +80,5 @@ Route::post('/ad/save', 'SaveAdController@saveAd')->middleware('auth');
 Route::post('/ad/remove', 'SaveAdController@removeAd')->name('remove.ad')->middleware('auth');
 Route::get('/saved-ads', 'SaveAdController@getAdsFav')->name('saved.ad')->middleware('auth');
 
+//report ad
+Route::post('/report-this-ad', 'FraudController@store')->name('report.ad');
