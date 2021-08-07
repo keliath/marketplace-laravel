@@ -37,6 +37,8 @@
             </div>
 
             <div class="col-md-9">
+                @include('breadcrumb')
+
                 <div class="row">
                     @forelse ($advertisements as $ad)
                         <div class="col-3">
