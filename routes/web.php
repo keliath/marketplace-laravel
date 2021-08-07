@@ -31,7 +31,8 @@ Route::group(['prefix' => 'auth', 'middleware' => 'admin'], function () {
     Route::get('/', function () {
         return view('backend.admin.index');
     })->name('auth');
-    Route::resource('/category', 'CategoryController'); //dependiendo la ruta ejecutara un metodo ej: category/create ejecuta metodo create
+    Route::resource('/category', 'CategoryController');
+    //dependiendo la ruta ejecutara un metodo ej: category/create ejecuta metodo create
     Route::resource('/subcategory', 'SubcategoryController');
     Route::resource('/childcategory', 'ChildcategoryController');
 
