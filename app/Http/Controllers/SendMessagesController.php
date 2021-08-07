@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class SendMessagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
     public function index()
     {
         return view('message.index');
